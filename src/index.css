@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-dungeon-bg text-dungeon-parchment font-body antialiased;
+    margin: 0;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px),
+      radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px);
+    background-size: 24px 24px, 32px 32px;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-4 ring-avatar-spark ring-offset-2 ring-offset-dungeon-bg;
+  }
+}
+
+@layer components {
+  /* Chunky pixel border on dark surfaces (buttons, dungeon panels). */
+  .pixel-border {
+    box-shadow:
+      0 0 0 2px #0f0f1a,
+      0 0 0 4px #f0e6d3,
+      0 4px 0 4px #0f0f1a;
+    image-rendering: pixelated;
+  }
+
+  /* Chunky pixel border on light parchment surfaces (cards). */
+  .pixel-border-parchment {
+    box-shadow:
+      0 0 0 2px #d8ccb1,
+      0 0 0 4px #1a1a2e,
+      0 6px 0 4px #0f0f1a;
+    image-rendering: pixelated;
+  }
+
+  /* Inset highlight, used on parchment cards for depth. */
+  .pixel-inset {
+    box-shadow:
+      inset 2px 2px 0 0 #fff8e8,
+      inset -2px -2px 0 0 #d8ccb1;
+  }
+
+  /* Press to feel pressed: shifts down by border height on :active. */
+  .pixel-press {
+    transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+  }
+  .pixel-press:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 0 0 2px #0f0f1a,
+      0 0 0 4px #f0e6d3,
+      0 0 0 4px #0f0f1a;
+  }
+}
